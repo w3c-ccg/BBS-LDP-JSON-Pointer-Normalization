@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BBS+ Signatures 2021</title>
+    <title>BBS+ Signatures 2022</title>
     <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
     <!--
       === NOTA BENE ===
@@ -15,7 +15,7 @@
         specStatus:           "CG-DRAFT",
 
         // the specification's short name, as in http://www.w3.org/TR/short-name/
-        shortName:            "lds-bbs",
+        shortName:            "ldp-bbs2022",
 
         // if you wish the publication date to be other than today, set this
         // publishDate:  "2009-08-06",
@@ -26,7 +26,7 @@
         // previousMaturity:  "WD",
 
         // if there a publicly available Editor's Draft, this is the link
-        edDraftURI:           "https://w3c-ccg.github.io/ldp-bbs2020/",
+        edDraftURI:           "https://w3c-ccg.github.io/ldp-bbs2022/",
 
         // if this is a LCWD, uncomment and set the end of its review period
         // lcEnd: "2009-08-05",
@@ -38,10 +38,14 @@
         // editors, add as many as you like
         // only "name" is required
         editors:  [
+          { name: "Tomislav Markovski", url: "https://trinsic.id/",
+            company: "Trinsic", companyURL: "https://trinsic.id/" },
           { name: "Tobias Looker", url: "https://mattr.global/",
-            company: "Mattr", companyURL: "https://mattr.global/" },
+            company: "Mattr", companyURL: "https://mattr.global/",
+            note: "ldp-bbs2020" },
           { name: "Orie Steele", url: "https://transmute.industries",
-            company: "Transmute", companyURL: "https://transmute.industries" }
+            company: "Transmute", companyURL: "https://transmute.industries",
+            note: "ldp-bbs2020" }
         ],
 
         // extend the bibliography entries
@@ -189,7 +193,7 @@
   <body>
     <section id='abstract'>
       <p>
-This specification describes the BBS+ Signature Suite created in 2020
+This specification describes the BBS+ Signature Suite created in 2022
 for the Linked Data Proof specification. The Signature Suite utilizes
 BBS+ signatures to provide the capability of zero knowledge
 proof disclosures.
@@ -210,7 +214,7 @@ This specification defines a set of cryptographic suites for the purpose of crea
 for BBS+ Signatures in conformance with the Linked Data Proofs [[LD-PROOFS]] specification. 
       </p>
       <p>
-In general the suites uses the RDF Dataset Normalization Algorithm [[RDF-DATASET-NORMALIZATION]] to transform an
+In general the suites uses <a>canonicalization algorithm</a> to transform an
 input document into its canonical form. It then uses the <a>statement digest algorithm</a> 
 to digest each statement to be signed individually, finally the digested statements are signed
 using the defined <a>signature algorithm</a>.
@@ -469,7 +473,7 @@ and smaller to create rather than key generation.
                 <tbody>
                   <tr>
                     <td><a>canonicalization algorithm</a></td>
-                    <td>https://w3id.org/security#URDNA2015</td>
+                    <td>https://w3id.org/security#URDNA2015 or https://w3id.org/security#JPCS</td>
                     <td>[[RDF-DATASET-NORMALIZATION]]</td>
                   </tr>
                   <tr>
@@ -540,12 +544,12 @@ and smaller to create rather than key generation.
           </p>
 
           <p>
-            The term of <code><dfn>BbsBlsSignature2020</dfn></code> is used to indicate when a <a>linked data proof</a> is of type BBS+ Signature.
+            The term of <code><dfn>BbsBlsSignature2022</dfn></code> is used to indicate when a <a>linked data proof</a> is of type BBS+ Signature.
           </p>
 
           <p>
             A <a>linked data document</a> featuring a BBS+ Signature </a>linked data proof</a> 
-            MUST contain a proof element thats has a type equal to <code>BbsBlsSignature2020</code>.
+            MUST contain a proof element thats has a type equal to <code>BbsBlsSignature2022</code>.
           </p>
 
 
@@ -563,7 +567,7 @@ and smaller to create rather than key generation.
               "telephone": "(425) 123-4567",
               "email": "jane.doe@example.com",
               "proof": {
-                <span class="highlight">"type": "BbsBlsSignature2020"</span>,
+                <span class="highlight">"type": "BbsBlsSignature2022"</span>,
                 "created": "2020-04-25",
                 "verificationMethod": "did:example:489398593#test",
                 "proofPurpose": "assertionMethod",
@@ -572,6 +576,13 @@ and smaller to create rather than key generation.
               }
             }
           </pre>
+        </section>
+
+        <section>
+          <h4>Canonicalization Algorithm</h4>
+          <p>
+            TODO
+          </p>
         </section>
 
         <section>
@@ -602,7 +613,7 @@ and smaller to create rather than key generation.
               "telephone": "(425) 123-4567",
               "email": "jane.doe@example.com",
               "proof": {
-                "type": "BbsBlsSignature2020",
+                "type": "BbsBlsSignature2022",
                 <span class="highlight">"created": "2020-04-25"</span>,
                 "verificationMethod": "did:example:489398593#test",
                 "proofPurpose": "assertionMethod",
@@ -617,7 +628,7 @@ and smaller to create rather than key generation.
           <h4>@context</h4>
 
           <p> 
-            When using [[JSON-LD]] to exchange data between more than one software system, it's important to use terminology that both of the software systems can understand. 
+            When using [[JSON-LD]] to exchange data between more than one software system, it's important to use terminology that both of the software systems can understand.
             In [[JSON-LD]] this common terminology is identified with the usage of URIs. However, those URIs can be long and not human friendly for implementors to work with.
             In such cases, aliases that are presented in a short-form can be used to ease this burden. This specification relies on the <code>@context</code> property in [[JSON-LD]]
             to short-form aliases to long form URIs required by this <a>signature suite</a>. It's RECOMMENDED that <code>https://w3id.org/security/bbs/v1</code> is used within the 
@@ -638,7 +649,7 @@ and smaller to create rather than key generation.
               "telephone": "(425) 123-4567",
               "email": "jane.doe@example.com",
               "proof": {
-                "type": "BbsBlsSignature2020",
+                "type": "BbsBlsSignature2022",
                 "created": "2020-04-25",
                 "verificationMethod": "did:example:489398593#test",
                 "proofPurpose": "assertionMethod",
@@ -681,7 +692,7 @@ and smaller to create rather than key generation.
               "telephone": "(425) 123-4567",
               "email": "jane.doe@example.com",
               "proof": {
-                "type": "BbsBlsSignature2020",
+                "type": "BbsBlsSignature2022",
                 "created": "2020-04-25",
                 <span class="highlight">"verificationMethod": "did:example:489398593#test"</span>,
                 "proofPurpose": "assertionMethod",
@@ -719,53 +730,12 @@ and smaller to create rather than key generation.
               "telephone": "(425) 123-4567",
               "email": "jane.doe@example.com",
               "proof": {
-                "type": "BbsBlsSignature2020",
+                "type": "BbsBlsSignature2022",
                 "created": "2020-04-25",
                 "verificationMethod": "did:example:489398593#test",
                 <span class="highlight">"proofPurpose": "assertionMethod"</span>,
                 "proofValue": "F9uMuJzNBqj4j+HPTvWjUN/MNoe6KRH0818WkvDn2Sf7kg1P17YpNyzSB+CH57AWDFunU13tL8oTBDpBhODckelTxHIaEfG0rNmqmjK6DOs0/ObksTZh7W3OTbqfD2h4C/wqqMQHSWdXXnojwyFDEg==",
                 "requiredRevealStatements": [ 4, 5 ]
-              }
-            }
-          </pre>
-        </section>
-
-        <section>
-          <h4>Required Reveal Statements</h4>
-
-          <p>
-            When producing a digital signature that is capable of <a>selective disclosure</a> with a set signed statements, it is useful for the
-            signer to be able to express as apart of the proof which statements must be revealed in a <a>derived proof</a>
-          </p>
-
-          <p>
-            A <a>linked data document</a> featuring a BBS+ Signature </a>linked data proof</a> MUST contain a <code>requiredRevealStatements</code> 
-            attribute with a value that is an array of un-signed integers representing the indicies of the statements in the <a>canonical form</a> 
-            that MUST always be revealed in a <a>derived proof</a>. The indicies corresponding to the statements for the <code>verificationMethod</code> 
-            and <code>proofPurpose</code> as apart of the </a>linked data proof</a> MUST always be present.
-          </p>
-
-    
-          <pre class="example nohighlight">
-            {
-              "@context": [
-                "http://schema.org/",
-                "https://w3id.org/security/v2",
-                "https://w3id.org/security/bbs/v1"
-              ],
-              "@type": "Person",
-              "firstName": "Jane",
-              "lastName": "Does",
-              "jobTitle": "Professor",
-              "telephone": "(425) 123-4567",
-              "email": "jane.doe@example.com",
-              "proof": {
-                "type": "BbsBlsSignature2020",
-                "created": "2020-04-25",
-                "verificationMethod": "did:example:489398593#test",
-                "proofPurpose": "assertionMethod",
-                "proofValue": "F9uMuJzNBqj4j+HPTvWjUN/MNoe6KRH0818WkvDn2Sf7kg1P17YpNyzSB+CH57AWDFunU13tL8oTBDpBhODckelTxHIaEfG0rNmqmjK6DOs0/ObksTZh7W3OTbqfD2h4C/wqqMQHSWdXXnojwyFDEg==",
-                <span class="highlight">"requiredRevealStatements": [ 4, 5 ]</span>
               }
             }
           </pre>
@@ -799,7 +769,7 @@ and smaller to create rather than key generation.
               "telephone": "(425) 123-4567",
               "email": "jane.doe@example.com",
               "proof": {
-                "type": "BbsBlsSignature2020",
+                "type": "BbsBlsSignature2022",
                 "created": "2020-04-25",
                 "verificationMethod": "did:example:489398593#test",
                 "proofPurpose": "assertionMethod",
@@ -816,7 +786,7 @@ and smaller to create rather than key generation.
       <h2>The BBS+ Signature Proof Suite 2020</h2>
       <p>
 A BBS proof of knowledge <a>linked data proof</a> is a proof that
-is derived from a <a>BbsBlsSignature2020</a> <a>linked data proof</a>
+is derived from a <a>BbsBlsSignature2022</a> <a>linked data proof</a>
 where by a sub-set of the original <a>statements</a> are revealed.
       </p>
       <p>
@@ -894,7 +864,7 @@ the following algorithms:
               "lastName": "Does",
               "telephone": "(425) 123-4567",
               "proof": {
-                <span class="highlight">"type": "BbsBlsSignatureProof2020"</span>,
+                <span class="highlight">"type": "BbsBlsSignatureProof2022"</span>,
                 "created": "2020-04-25",
                 "verificationMethod": "did:example:489398593#test",
                 "proofPurpose": "assertionMethod",
@@ -929,7 +899,7 @@ the following algorithms:
               "lastName": "Does",
               "telephone": "(425) 123-4567",
               "proof": {
-                "type": "BbsBlsSignatureProof2020",
+                "type": "BbsBlsSignatureProof2022",
                 <span class="highlight">"created": "2020-04-25"</span>,
                 "verificationMethod": "did:example:489398593#test",
                 "proofPurpose": "assertionMethod",
@@ -945,7 +915,7 @@ the following algorithms:
 
           <p>
             A <a>linked data document</a> featuring a BBS+ proof of knowledge </a>linked data proof</a> MUST contain a <code>verificationMethod</code> 
-            attribute with a value that is equal to that of the <a>BbsBlsSignature2020</a> for which the proof is derived from.
+            attribute with a value that is equal to that of the <a>BbsBlsSignature2022</a> for which the proof is derived from.
           </p>
           
           <div class="issue">TODO: Add paragraph?</div>
@@ -964,7 +934,7 @@ the following algorithms:
               "lastName": "Does",
               "telephone": "(425) 123-4567",
               "proof": {
-                "type": "BbsBlsSignatureProof2020",
+                "type": "BbsBlsSignatureProof2022",
                 "created": "2020-04-25",
                 <span class="highlight">"verificationMethod": "did:example:489398593#test"</span>,
                 "proofPurpose": "assertionMethod",
@@ -982,7 +952,7 @@ the following algorithms:
 
           <p>
             A <a>linked data document</a> featuring a BBS+ proof of knowledge </a>linked data proof</a> MUST contain a <code>proofPurpose</code> 
-            attribute with a value that is equal to that of the <a>BbsBlsSignature2020</a> for which the proof is derived from.
+            attribute with a value that is equal to that of the <a>BbsBlsSignature2022</a> for which the proof is derived from.
           </p>
 
           <pre class="example nohighlight">
@@ -999,7 +969,7 @@ the following algorithms:
               "lastName": "Does",
               "telephone": "(425) 123-4567",
               "proof": {
-                "type": "BbsBlsSignatureProof2020",
+                "type": "BbsBlsSignatureProof2022",
                 "created": "2020-04-25",
                 "verificationMethod": "did:example:489398593#test",
                 <span class="highlight">"proofPurpose": "assertionMethod"</span>,
@@ -1038,7 +1008,7 @@ the following algorithms:
               "lastName": "Does",
               "telephone": "(425) 123-4567",
               "proof": {
-                "type": "BbsBlsSignatureProof2020",
+                "type": "BbsBlsSignatureProof2022",
                 "created": "2020-04-25",
                 "verificationMethod": "did:example:489398593#test",
                 "proofPurpose": "assertionMethod",
@@ -1076,7 +1046,7 @@ the following algorithms:
               "lastName": "Does",
               "telephone": "(425) 123-4567",
               "proof": {
-                "type": "BbsBlsSignatureProof2020",
+                "type": "BbsBlsSignatureProof2022",
                 "created": "2020-04-25",
                 "verificationMethod": "did:example:489398593#test",
                 "proofPurpose": "assertionMethod",
@@ -1434,7 +1404,7 @@ considerations.</div>
         Innovation Program under contracts 
         70RSAT20T00000003, 
         and
-        70RSAT20T00000033. 
+        70RSAT20T00000033.
         The content of this specification does not
         necessarily reflect the position or the policy of the U.S. Government
         and no official endorsement should be inferred.
